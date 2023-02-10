@@ -1,9 +1,14 @@
-import requests
+import paho.mqtt.client as mqtt
 
 DOMAIN = "recorder_service"
 
 WAV_ATTR_NAME = "wav"
-URL_ATTR_NAME = "target"
+URL_ATTR_NAME = "target
+
+server=""
+port=""
+username=""
+password=""
 
 def setup(hass, config):
     def handle_recorder(call):
@@ -14,7 +19,7 @@ def setup(hass, config):
         url = target
         payload = bytearray(wav)
         headers = {'content-type': 'audio/wav', 'Accept': 'application/json'}
-        request = requests.post(url, data=payload, headers=headers)
+        request = mqtt.single(test, payload=None, qos=2, retain=False, hostname=server, port=port, auth={‘username’:username, ‘password’:password})
 
     hass.services.register(DOMAIN, "process", handle_recorder)
 
